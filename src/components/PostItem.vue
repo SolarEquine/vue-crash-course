@@ -1,6 +1,6 @@
 <template>
     <div class="post">
-        <div><strong>Название^</strong>{{ post.title }}</div>
+        <div><strong>Название:</strong>{{ post.title }}</div>
         <div>{{ post.body }}</div>
     </div>
 </template>
