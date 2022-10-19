@@ -1,12 +1,19 @@
 <template>
     <div class="post">
-        <div><strong>Название:</strong>{{ post.title }}</div>
-        <div>{{ post.body }}</div>
+        <div>
+            <div><strong>Название:</strong>{{ post.title }}</div>
+            <div>{{ post.body }}</div>
+        </div>
+        <div>
+            <my-button>Удалить</my-button>
+        </div>
     </div>
 </template>
 
 <script>
+import MyButton from './UI/MyButton.vue'
 export default{
+  components: { MyButton },
     props:{
         post: {
             type: Object,
@@ -21,5 +28,8 @@ export default{
     margin-top: 15px;
     border: 2px solid teal;
     padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 </style>

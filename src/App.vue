@@ -35,6 +35,7 @@ export default {
         createPost(post){
             this.posts.push(post);
         },
+        
     }
 
 };

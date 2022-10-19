@@ -13,12 +13,14 @@
             type="text" 
             placeholder="Описание">
         
-        <button 
+        <my-button 
             class="button"
+            style = "align-self: flex-end;
+                margin-top: 15px;"
             @click="createPost" 
             >
             Создать пост
-        </button>
+    </my-button>
     </form>
 </template>
 
@@ -59,19 +61,7 @@ export default{
     flex-direction: column;
 }
 
-.button{
-    align-self: flex-end;
-    margin-top: 15px;
-    padding: 10px 15px;
-    background: none;
-    color:teal;
-    border: 1px solid teal;
-    cursor: pointer;
-    transition: all .2s linear;
-}
 
-.button:hover{
-    color: #fff;
-    background-color: teal;
-}
+
+
 </style>
