@@ -21,7 +21,7 @@
         </my-dialog>
 
         <post-list 
-            :posts="posts"
+            :posts="sortedPosts"
             @remove="removePost"
             v-if="!isLoading"
         />
@@ -50,7 +50,8 @@ export default {
         selectedSort: '',
         sortOptions: [
             {value: 'title', name: 'По названию'},
-            {value: 'body', name: 'По описанию'}
+            {value: "body", name: "По описанию"},
+            {value: "id", name: "По id"}
         ]
         }
 
@@ -87,13 +88,14 @@ export default {
         this.fetchPosts();
     },
 
-    watch: {
-        selectedSort(newValue){
-            this.posts.sort((post1, post2) => {
-                return post1[newValue]?.localeCompare(post2[newValue])
-            })
+    computed:{
+        sortedPosts(){
+            if (this.selectedSort !== "id"){
+                return [...this.posts].sort((post1, post2) => post1[this.selectedSort]?.localeCompare(post2[this.selectedSort]))
+            }
+                return [...this.posts].sort((post1 , post2) => post1.selectedSort - post2.selectedSort)
         }
-    }
+    },
 
 };
 </script>

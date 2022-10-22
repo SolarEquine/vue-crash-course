@@ -3,6 +3,7 @@
         <div>
             <div><strong>Название:</strong>{{ post.title }}</div>
             <div>{{ post.body }}</div>
+            <div>ID: {{post.id}}</div>
         </div>
         <div>
             <my-button
