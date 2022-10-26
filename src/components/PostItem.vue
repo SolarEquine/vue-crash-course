@@ -3,17 +3,19 @@
         <div>
             <div><strong>Название:</strong>{{ post.title }}</div>
             <div>{{ post.body }}</div>
+            <div>ID: {{post.id}}</div>
         </div>
         <div>
-            <my-button>Удалить</my-button>
+            <my-button
+            @click="$emit('remove', post)"
+            >Удалить</my-button>
         </div>
     </div>
 </template>
 
 <script>
-import MyButton from './UI/MyButton.vue'
+
 export default{
-  components: { MyButton },
     props:{
         post: {
             type: Object,

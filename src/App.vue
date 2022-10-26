@@ -1,32 +1,58 @@
 <template>
     <div class="app">
-        <post-form  
+        <h1>Посты</h1>
+        <div class="app__btns">
+            <my-button
+                @click="showDialog"
+            >Создать пост
+            </my-button>
+
+            <my-select
+            v-model="selectedSort"
+            :options="sortOptions"
+            ></my-select>
+
+        </div>
+
+        <my-dialog v-model:show="dialogVisible">
+            <post-form  
             @create="createPost"
         />
+        </my-dialog>
+
         <post-list 
-            :posts="posts"
+            :posts="sortedPosts"
+            @remove="removePost"
+            v-if="!isLoading"
         />
+        <div v-else>Идет загрузка...</div>
     </div>
 </template>
 
 <script>
 import PostForm from "@/components/PostForm";
 import PostList from "@/components/PostList";
+import axios from "axios";
 
 export default {  
 
     components:{
-        PostForm, PostList
-    },
+    PostForm,
+    PostList
+},
 
     data(){
         return{
             posts: [
-            {id: 1, title: "Javascript 1", body: "Описание поста 1"},
-            {id: 2, title: "Javascript 2", body: "Описание поста 2"},
-            {id: 3, title: "Javascript 3", body: "Описание поста 3"},
-            {id: 4, title: "Javascript 4", body: "Описание поста 4"},
         ],
+        dialogVisible: false,
+        isLoading: false,
+        selectedSort: '',
+        sortOptions: [
+            {value: 'title', name: 'По названию'},
+            {value: "body", name: "По описанию"},
+            {value: "id", name: "По id"}
+        ]
         }
 
     },
@@ -34,9 +60,42 @@ export default {
     methods: {
         createPost(post){
             this.posts.push(post);
+            this.dialogVisible = false;
         },
-        
-    }
+
+        removePost(post){
+            this.posts = this.posts.filter(p => p.id !== post.id);
+        },
+        showDialog(){
+            this.dialogVisible = true;
+        },
+
+        async fetchPosts(){
+            try{
+                this.isLoading = true;
+                const response = await axios.get("https://jsonplaceholder.typicode.com/posts?_limit=10");
+                this.posts = response.data;
+            }catch(e){
+                alert("Ошибка");
+            }
+            finally{
+                this.isLoading = false;
+            }
+        }
+    },
+
+    mounted(){
+        this.fetchPosts();
+    },
+
+    computed:{
+        sortedPosts(){
+            if (this.selectedSort !== "id"){
+                return [...this.posts].sort((post1, post2) => post1[this.selectedSort]?.localeCompare(post2[this.selectedSort]))
+            }
+                return [...this.posts].sort((post1 , post2) => post1.selectedSort - post2.selectedSort)
+        }
+    },
 
 };
 </script>
@@ -51,6 +110,12 @@ export default {
 
 .app{
     padding: 20px;
+}
+
+.app__btns{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
 }
 
 
