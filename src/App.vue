@@ -1,12 +1,15 @@
 <template>
+    <navbar/>
     <div class="app">
         <router-view></router-view>
     </div>
 </template>
 
 <script>
+
+import Navbar from "@/components/Navbar"
     export default {
-        
+        components: {Navbar}
     }
 </script>
 
@@ -20,4 +23,5 @@
 .app{
     padding: 20px;
 }
+
 </style>
