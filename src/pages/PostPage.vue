@@ -30,7 +30,7 @@
             v-if="!isLoading"
         />
         <div v-else>Идет загрузка...</div>
-        <div ref="observer" class="observer"></div>
+        <div v-intersection="loadMorePosts" class="observer"></div>
         <!-- <div  class="page-wrapper">
             <div 
             v-for="pageNumber in totalPages" 
@@ -135,21 +135,6 @@ export default {
 
     mounted(){
         this.fetchPosts();
-        
-
-        const options = {
-            rootMargin: "0px",
-            threshold: 1.0
-        };
-
-        const callback = (entries, observer) => {
-            if(entries[0].isIntersecting && this.page < this.totalPages){
-                this.loadMorePosts();
-            }
-        };
-
-        const observer = new IntersectionObserver(callback, options);
-        observer.observe(this.$refs.observer);
     },
 
     computed:{
@@ -157,7 +142,7 @@ export default {
             if (this.selectedSort !== "id"){
                 return [...this.posts].sort((post1, post2) => post1[this.selectedSort]?.localeCompare(post2[this.selectedSort]))
             }
-                return [...this.posts].sort((post1 , post2) => post1.selectedSort - post2.selectedSort)
+                return [...this.posts].sort((post1 , post2) => post1[this.selectedSort] - post2[this.selectedSort])
         },
 
         searchAndSortedPosts(){

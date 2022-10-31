@@ -7,7 +7,8 @@
         </div>
         <div>
             <my-button
-            @click="$router.push(`/posts/${post.id}`)"
+            @click="$router.push(`/post/${post.id}`)"
+            style="margin-right: 15px;"
             >Открыть</my-button>
             <my-button
             @click="$emit('remove', post)"
