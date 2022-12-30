@@ -6,6 +6,7 @@
                 <div class="nav_links">
                     <div class="nav_item"><router-link to="/about">About</router-link></div>
                     <div class="nav_item"><router-link to="/posts">Posts</router-link></div>
+                    <div class="nav_item"><router-link to="/store">Store</router-link></div>
                 </div>
             </div>
         </div>

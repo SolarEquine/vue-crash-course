@@ -2,10 +2,10 @@
     <div class="post">
         <div>
             <div><strong>Название:</strong>{{ post.title }}</div>
-            <div>{{ post.body }}</div>
+            <div  class="post_text">{{ post.body }}</div>
             <div>ID: {{post.id}}</div>
         </div>
-        <div>
+        <div class="post_controls">
             <my-button
             @click="$router.push(`/post/${post.id}`)"
             style="margin-right: 15px;"
@@ -37,5 +37,9 @@ export default{
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.post_controls{
+    min-width: 180px;
 }
 </style>
