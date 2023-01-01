@@ -20,6 +20,10 @@ import Navbar from "@/components/Navbar"
     box-sizing: border-box;
 }
 
+html{
+    overflow-y: scroll;
+}
+
 .app{
     padding: 20px;
 }

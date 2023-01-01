@@ -20,6 +20,7 @@
 </script>
 
 <style scoped>
+
 .navbar{
     background-color: teal;
 }
