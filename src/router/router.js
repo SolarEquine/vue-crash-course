@@ -1,5 +1,5 @@
 import Main from "@/pages/Main";
-import {createRouter, createWebHashHistory} from "vue-router";
+import {createRouter, createWebHistory} from "vue-router";
 import PostPage from "@/pages/PostPage";
 import About from "@/pages/About";
 import PostPageId from "@/pages/PostPageId";
@@ -7,7 +7,7 @@ import PostPageWithStore from "@/pages/PostPageWithStore";
 
 
 const router = createRouter({
-    history: createWebHashHistory(process.env.BASE_URL),
+    history: createWebHistory(process.env.BASE_URL),
     routes: [
         {
             path: '/',
